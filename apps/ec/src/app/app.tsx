@@ -1,5 +1,12 @@
+import { ThemeProvider } from 'react-jss';
+import { lightTheme } from './core/themes/light.theme';
+
 const App = () => {
-  return <div>App works!</div>;
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <div>App works!</div>
+    </ThemeProvider>
+  );
 };
 
 export default App;
