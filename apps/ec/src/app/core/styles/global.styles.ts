@@ -16,7 +16,7 @@ const useGlobalStyles = createUseStyles(({ typography }: Theme) => ({
       fontFamily: typography.font,
       fontSize: typography.fontSize.bodyLarge,
       fontWeight: typography.fontWeight.normal,
-      lineHeight: '24px',
+      lineHeight: typography.leading.bodyLarge,
     },
   },
 }));

@@ -82,6 +82,7 @@ export type Typography = {
   font: string;
   fontSize: FontSize;
   fontWeight: FontWeight;
+  leading: FontSize;
 };
 
 export type Theme = {
