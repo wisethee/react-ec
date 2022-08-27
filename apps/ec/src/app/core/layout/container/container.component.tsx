@@ -40,7 +40,7 @@ const useContainerStyles = createUseStyles(({ screens, spacing }: Theme) => ({
   },
 }));
 
-// @Component AppContainer
+// @Component
 const AppContainer = ({
   children,
   fluid,

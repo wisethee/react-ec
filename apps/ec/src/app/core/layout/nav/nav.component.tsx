@@ -43,7 +43,7 @@ const useNavStyles = createUseStyles(({ colors, spacing }: Theme) => ({
   },
 }));
 
-// @Component AppNavStart
+// @Component
 const AppNavStart = () => {
   const { navStart, link } = useNavStyles();
   return (
@@ -55,7 +55,7 @@ const AppNavStart = () => {
   );
 };
 
-// @Component AppNavCenter
+// @Component
 const AppNavCenter = () => {
   const { navCenter, link } = useNavStyles();
   return (
@@ -67,7 +67,7 @@ const AppNavCenter = () => {
   );
 };
 
-// @Component AppNavEnd
+// @Component
 const AppNavEnd = () => {
   const { navEnd, link } = useNavStyles();
   return (
@@ -82,7 +82,7 @@ const AppNavEnd = () => {
   );
 };
 
-// @Component AppNav
+// @Component
 const AppNav = () => {
   const { nav } = useNavStyles();
   return (
