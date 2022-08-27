@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
 // Utils
-import classNames from '../../utils/class-names.utils';
+import classNames from '../../utils/class-names/class-names.utils';
 
 // Component Types
 type Position = 'start' | 'center' | 'end' | undefined;
