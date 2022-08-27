@@ -5,7 +5,7 @@ import AppContainer from '../../core/layout/container/container.component';
 import AppHero from '../../core/layout/hero/hero.component';
 
 // Components
-import AppCategories from '../../core/components/categories/categories.component';
+import AppDirectory from '../../core/components/directory/directory.component';
 
 // @Component
 const AppHome = () => {
@@ -13,7 +13,7 @@ const AppHome = () => {
     <Fragment>
       <AppHero />
       <AppContainer fluid={false}>
-        <AppCategories />
+        <AppDirectory />
       </AppContainer>
     </Fragment>
   );

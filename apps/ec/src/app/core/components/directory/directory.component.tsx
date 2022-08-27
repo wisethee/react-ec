@@ -6,11 +6,11 @@ import { Theme } from '../../types/theme.type';
 import { Category } from '../../types/category.type';
 
 // Components
-import AppCategoryItem from '../category-item/category-item.component';
+import AppCategory from '../category/category.component';
 
 // Component Styles
-const useCategoriesStyles = createUseStyles(({ spacing }: Theme) => ({
-  categories: {
+const useDirectoryStyles = createUseStyles(({ spacing }: Theme) => ({
+  directory: {
     display: 'grid',
     gridTemplateRows: 'repeat(2,minmax(0,1fr))',
     gridTemplateColumns: 'repeat(3,minmax(0,1fr))',
@@ -20,7 +20,7 @@ const useCategoriesStyles = createUseStyles(({ spacing }: Theme) => ({
 }));
 
 // @Component
-const AppCategories = () => {
+const AppDirectory = () => {
   const categoryList: Category[] = [
     { id: '01', title: 'jackets', imageUrl: '' },
     { id: '02', title: 'sneakers', imageUrl: '' },
@@ -28,15 +28,15 @@ const AppCategories = () => {
     { id: '04', title: 'mens', imageUrl: '' },
   ];
 
-  const { categories } = useCategoriesStyles();
+  const { directory } = useDirectoryStyles();
 
   return (
-    <div className={categories}>
-      {categoryList.map((category) => (
-        <AppCategoryItem key={category.id} category={category} />
+    <div className={directory}>
+      {categoryList.map((categoryItem) => (
+        <AppCategory key={categoryItem.id} categoryItem={categoryItem} />
       ))}
     </div>
   );
 };
 
-export default AppCategories;
+export default AppDirectory;
