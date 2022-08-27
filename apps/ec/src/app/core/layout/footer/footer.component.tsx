@@ -2,7 +2,7 @@
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
-// Layout Components
+// Layout
 import AppContainer from '../container/container.component';
 
 // Component Styles

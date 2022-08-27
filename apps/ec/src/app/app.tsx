@@ -1,17 +1,16 @@
-// Router
 import { Route, Routes } from 'react-router-dom';
 
-// Jss -> Theme Provider | Global Styles
+// Jss
 import { ThemeProvider } from 'react-jss';
 import { lightTheme } from './core/themes/light.theme';
 import GlobalStyles from './core/styles/global.styles';
 
-// Components -> Layout
+// Layout
 import AppFooter from './core/layout/footer/footer.component';
 import AppMain from './core/layout/main/main.component';
 import AppNav from './core/layout/nav/nav.component';
 
-// Feat -> Views
+// Feat
 import AppAuth from './feat/auth/auth.component';
 import AppHome from './feat/home/home.component';
 import AppNotFound from './feat/not-found/not-found.component';
