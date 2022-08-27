@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
 // Types
-import { Category } from '../../types/category.type';
+import { ProductCategory } from '../../types/product-category.type';
 
 // Components
 import classNames from '../../utils/class-names.utils';
@@ -25,11 +25,11 @@ const useCategoryStyles = createUseStyles(({ colors }: Theme) => ({
 }));
 
 // Component Types
-type AppCategoryProps = { categoryItem: Category };
+type AppCategoryProps = { productCategory: ProductCategory };
 
 // @Component
-const AppCategory = ({ categoryItem }: AppCategoryProps) => {
-  const { id, title } = categoryItem;
+const AppCategory = ({ productCategory }: AppCategoryProps) => {
+  const { id, title } = productCategory;
   const { category, id3, id4 } = useCategoryStyles();
 
   return (

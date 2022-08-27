@@ -51,6 +51,7 @@ const useHeroStyles = createUseStyles(
 // @Component
 const AppHero = () => {
   const { hero, inner } = useHeroStyles();
+
   return (
     <section className={hero}>
       <AppContainer>

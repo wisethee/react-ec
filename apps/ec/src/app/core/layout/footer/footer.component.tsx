@@ -24,6 +24,7 @@ const useFooterStyles = createUseStyles(
 // @Component
 const AppFooter = () => {
   const { footer, text } = useFooterStyles();
+
   return (
     <footer className={footer}>
       <AppContainer align="center" justify="center">

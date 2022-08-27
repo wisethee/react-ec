@@ -8,11 +8,11 @@ import AppHero from '../../core/layout/hero/hero.component';
 import AppDirectory from '../../core/components/directory/directory.component';
 
 // Types
-import { Category } from '../../core/types/category.type';
+import { ProductCategory } from '../../core/types/product-category.type';
 
 // @Component
 const AppHome = () => {
-  const categoryList: Category[] = [
+  const productCategories: ProductCategory[] = [
     { id: '01', title: 'jackets', imageUrl: '' },
     { id: '02', title: 'sneakers', imageUrl: '' },
     { id: '03', title: 'womans', imageUrl: '' },
@@ -23,7 +23,7 @@ const AppHome = () => {
     <Fragment>
       <AppHero />
       <AppContainer fluid={false}>
-        <AppDirectory categoryList={categoryList} />
+        <AppDirectory productCategories={productCategories} />
       </AppContainer>
     </Fragment>
   );

@@ -6,10 +6,11 @@ import { Theme } from '../../types/theme.type';
 import AppCategory from '../category/category.component';
 
 // Types
-import { Category } from '../../types/category.type';
+import { ProductCategory } from '../../types/product-category.type';
 
+// Component Types
 type AppDirectoryProps = {
-  categoryList: Category[];
+  productCategories: ProductCategory[];
 };
 
 // Component Styles
@@ -24,15 +25,15 @@ const useDirectoryStyles = createUseStyles(({ spacing }: Theme) => ({
 }));
 
 // @Component
-const AppDirectory = ({ categoryList }: AppDirectoryProps) => {
+const AppDirectory = ({ productCategories }: AppDirectoryProps) => {
   const { directory } = useDirectoryStyles();
 
   return (
     <div className={directory}>
-      {categoryList.map((categoryListItem) => (
+      {productCategories.map((productCategory) => (
         <AppCategory
-          key={categoryListItem.id}
-          categoryItem={categoryListItem}
+          key={productCategory.id}
+          productCategory={productCategory}
         />
       ))}
     </div>

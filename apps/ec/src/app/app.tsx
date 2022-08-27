@@ -10,7 +10,7 @@ import AppFooter from './core/layout/footer/footer.component';
 import AppMain from './core/layout/main/main.component';
 import AppNav from './core/layout/nav/nav.component';
 
-// Feat
+// Routes
 import AppAuth from './routes/auth/auth.component';
 import AppHome from './routes/home/home.component';
 import AppNotFound from './routes/not-found/not-found.component';

@@ -46,6 +46,7 @@ const useNavStyles = createUseStyles(({ colors, spacing }: Theme) => ({
 // @Component
 const AppNavStart = () => {
   const { navStart, link } = useNavStyles();
+
   return (
     <div className={navStart}>
       <Link to="/menu" className={link}>
@@ -58,6 +59,7 @@ const AppNavStart = () => {
 // @Component
 const AppNavCenter = () => {
   const { navCenter, link } = useNavStyles();
+
   return (
     <div className={navCenter}>
       <Link to="/" className={link}>
@@ -70,6 +72,7 @@ const AppNavCenter = () => {
 // @Component
 const AppNavEnd = () => {
   const { navEnd, link } = useNavStyles();
+
   return (
     <div className={navEnd}>
       <Link to="/auth" className={link}>
@@ -85,6 +88,7 @@ const AppNavEnd = () => {
 // @Component
 const AppNav = () => {
   const { nav } = useNavStyles();
+
   return (
     <nav className={nav}>
       <AppContainer align="center">
