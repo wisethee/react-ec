@@ -11,9 +11,9 @@ import AppMain from './core/layout/main/main.component';
 import AppNav from './core/layout/nav/nav.component';
 
 // Feat
-import AppAuth from './feat/auth/auth.component';
-import AppHome from './feat/home/home.component';
-import AppNotFound from './feat/not-found/not-found.component';
+import AppAuth from './routes/auth/auth.component';
+import AppHome from './routes/home/home.component';
+import AppNotFound from './routes/not-found/not-found.component';
 
 const App = () => {
   return (

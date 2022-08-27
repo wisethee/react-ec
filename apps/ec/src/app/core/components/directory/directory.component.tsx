@@ -2,11 +2,15 @@
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
+// Components
+import AppCategory from '../category/category.component';
+
 // Types
 import { Category } from '../../types/category.type';
 
-// Components
-import AppCategory from '../category/category.component';
+type AppDirectoryProps = {
+  categoryList: Category[];
+};
 
 // Component Styles
 const useDirectoryStyles = createUseStyles(({ spacing }: Theme) => ({
@@ -20,20 +24,16 @@ const useDirectoryStyles = createUseStyles(({ spacing }: Theme) => ({
 }));
 
 // @Component
-const AppDirectory = () => {
-  const categoryList: Category[] = [
-    { id: '01', title: 'jackets', imageUrl: '' },
-    { id: '02', title: 'sneakers', imageUrl: '' },
-    { id: '03', title: 'womans', imageUrl: '' },
-    { id: '04', title: 'mens', imageUrl: '' },
-  ];
-
+const AppDirectory = ({ categoryList }: AppDirectoryProps) => {
   const { directory } = useDirectoryStyles();
 
   return (
     <div className={directory}>
-      {categoryList.map((categoryItem) => (
-        <AppCategory key={categoryItem.id} categoryItem={categoryItem} />
+      {categoryList.map((categoryListItem) => (
+        <AppCategory
+          key={categoryListItem.id}
+          categoryItem={categoryListItem}
+        />
       ))}
     </div>
   );
