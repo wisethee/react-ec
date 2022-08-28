@@ -11,11 +11,12 @@ import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
 // Component Styles
-const useSignUpStyles = createUseStyles((theme: Theme) => ({
+const useSignUpStyles = createUseStyles(({ spacing }: Theme) => ({
   signUp: {
     display: 'flex',
     flexDirection: 'column',
     width: '50%',
+    marginLeft: spacing[3],
   },
 }));
 
@@ -27,6 +28,7 @@ const defaultFormFields = {
 };
 
 // @Component
+// TODO: Alert user when user/email exists
 const AppSignUp = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
@@ -55,15 +57,10 @@ const AppSignUp = () => {
         password
       );
       await createUserDocuemnt(response?.user, { displayName });
+      resetFormFileds();
     } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        alert('Email already in use!');
-      } else {
-        console.log(error);
-      }
+      console.log(error);
     }
-
-    resetFormFileds();
   };
 
   const { signUp } = useSignUpStyles();
