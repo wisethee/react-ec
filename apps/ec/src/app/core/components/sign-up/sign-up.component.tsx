@@ -11,14 +11,27 @@ import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
 // Component Styles
-const useSignUpStyles = createUseStyles(({ spacing }: Theme) => ({
-  signUp: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '50%',
-    marginLeft: spacing[3],
-  },
-}));
+const useSignUpStyles = createUseStyles(
+  ({ colors, typography, spacing, screens }: Theme) => ({
+    signUp: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      [`${screens['@lg']}`]: { width: '50%' },
+    },
+    h2: {
+      fontSize: typography.fontSize.displaySmall,
+      lineHeight: typography.leading.displaySmall,
+      color: colors.grey[700],
+      marginBottom: spacing[2],
+    },
+    span: {
+      fontSize: typography.fontSize.bodyMedium,
+      color: colors.grey[500],
+      marginBottom: spacing[16],
+    },
+  })
+);
 
 const defaultFormFields = {
   displayName: '',
@@ -63,12 +76,12 @@ const AppSignUp = () => {
     }
   };
 
-  const { signUp } = useSignUpStyles();
+  const { signUp, h2, span } = useSignUpStyles();
 
   return (
     <div className={signUp}>
-      <h2>Don't have an account?</h2>
-      <span>Sign up with your email and password.</span>
+      <h2 className={h2}>Don't have an account?</h2>
+      <span className={span}>Sign up with your email and password.</span>
       <form onSubmit={(event) => handleSubmit(event)}>
         <AppFormInput
           label="Display Name"

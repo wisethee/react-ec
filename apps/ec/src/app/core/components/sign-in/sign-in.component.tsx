@@ -13,14 +13,27 @@ import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
 // Component Styles
-const useSignInStyles = createUseStyles(({ spacing }: Theme) => ({
-  signIn: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '50%',
-    marginRight: spacing[3],
-  },
-}));
+const useSignInStyles = createUseStyles(
+  ({ colors, typography, spacing, screens }: Theme) => ({
+    signIn: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      [`${screens['@lg']}`]: { width: '50%' },
+    },
+    h2: {
+      fontSize: typography.fontSize.displaySmall,
+      lineHeight: typography.leading.displaySmall,
+      color: colors.grey[700],
+      marginBottom: spacing[2],
+    },
+    span: {
+      fontSize: typography.fontSize.bodyMedium,
+      color: colors.grey[500],
+      marginBottom: spacing[16],
+    },
+  })
+);
 
 const defaultFormFields = {
   email: '',
@@ -33,7 +46,7 @@ const AppSignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { signIn } = useSignInStyles();
+  const { signIn, h2, span } = useSignInStyles();
 
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
@@ -63,8 +76,8 @@ const AppSignIn = () => {
 
   return (
     <div className={signIn}>
-      <h2>Already have an account?</h2>
-      <span>Sign in with your email and password.</span>
+      <h2 className={h2}>Already have an account?</h2>
+      <span className={span}>Sign in with your email and password.</span>
       <form onSubmit={(event) => handleSubmit(event)}>
         <AppFormInput
           label="Email"
