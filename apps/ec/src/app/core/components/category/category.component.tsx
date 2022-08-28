@@ -1,12 +1,10 @@
 // JSS
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
+import classNames from '../../utils/class-names/class-names.utils';
 
 // Types
 import { ProductCategory } from '../../types/product-category.type';
-
-// Components
-import classNames from '../../utils/class-names/class-names.utils';
 
 // Component Styles
 const useCategoryStyles = createUseStyles(({ colors }: Theme) => ({

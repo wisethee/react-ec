@@ -2,7 +2,7 @@
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
-// COmponent Styles
+// Component Styles
 const useFormInputStyles = createUseStyles(
   ({ colors, typography, spacing }: Theme) => ({
     formInput: {

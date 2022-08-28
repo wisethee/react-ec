@@ -3,10 +3,14 @@ import { useState } from 'react';
 // JSS
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
+
+// Utils
 import {
   createUserAuthWithEmailAndPassword,
   createUserDocuemnt,
 } from '../../utils/firebase/firebase.utils';
+
+// Components
 import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
@@ -33,6 +37,7 @@ const useSignUpStyles = createUseStyles(
   })
 );
 
+// Default Form Fields
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -45,6 +50,8 @@ const defaultFormFields = {
 const AppSignUp = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const { signUp, h2, span } = useSignUpStyles();
 
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
@@ -75,8 +82,6 @@ const AppSignUp = () => {
       console.log(error);
     }
   };
-
-  const { signUp, h2, span } = useSignUpStyles();
 
   return (
     <div className={signUp}>

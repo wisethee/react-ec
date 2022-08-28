@@ -1,4 +1,3 @@
-// JSS
 import React from 'react';
 
 // JSS
@@ -54,6 +53,7 @@ const AppButton = <C extends React.ElementType>({
   ...props
 }: AppButtonProps<C>) => {
   const { button, primary } = useButtonStyles();
+
   return (
     <button
       className={classNames(button, color === 'primary' && primary)}

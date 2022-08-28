@@ -1,4 +1,3 @@
-// Layout
 // JSS
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../core/types/theme.type';
@@ -18,10 +17,7 @@ const useAuthStyles = createUseStyles(({ spacing, screens }: Theme) => ({
     width: '100%',
     gap: spacing[24],
     padding: [spacing[24], spacing[0]],
-    // [`${screens['@sm']}`]: { padding: [spacing[0], spacing[4]] },
-    // [`${screens['@md']}`]: { padding: [spacing[0], spacing[8]] },
     [`${screens['@lg']}`]: { flexDirection: 'row' },
-    // [`${screens['@xl']}`]: { padding: [spacing[0], spacing[16]] },
   },
 }));
 

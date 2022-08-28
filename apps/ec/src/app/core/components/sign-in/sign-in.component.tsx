@@ -9,6 +9,8 @@ import {
   signInAuthUSerWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
+
+// Components
 import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
@@ -35,6 +37,7 @@ const useSignInStyles = createUseStyles(
   })
 );
 
+// Default Form Fields
 const defaultFormFields = {
   email: '',
   password: '',
