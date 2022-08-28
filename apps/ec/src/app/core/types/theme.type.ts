@@ -26,6 +26,7 @@ export type ColorPalette = {
 };
 
 export type Colors = {
+  white: string;
   grey: ColorPalette;
   red: ColorPalette;
 };

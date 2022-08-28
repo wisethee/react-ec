@@ -20,6 +20,7 @@ export const lightTheme: Theme = {
     '@xl': `@media (min-width: ${breakpoints.xl})`,
   },
   colors: {
+    white: '#ffffff',
     grey: {
       '50': '#f8fafc',
       '100': '#f1f5f9',

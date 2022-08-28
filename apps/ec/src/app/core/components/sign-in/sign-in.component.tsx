@@ -7,6 +7,7 @@ import {
   createUserDocuemnt,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
+import AppButton from '../button/button.component';
 
 // Component Styles
 const useSignInStyles = createUseStyles((theme: Theme) => ({
@@ -27,7 +28,9 @@ const AppSignIn = () => {
 
   return (
     <div className={signIn}>
-      <button onClick={logGoogleUser}>Sign in with Google</button>
+      <AppButton onClick={logGoogleUser} color="primary">
+        Sign in with Google
+      </AppButton>
     </div>
   );
 };

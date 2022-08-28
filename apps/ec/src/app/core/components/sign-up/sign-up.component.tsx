@@ -7,6 +7,7 @@ import {
   createUserAuthWithEmailAndPassword,
   createUserDocuemnt,
 } from '../../utils/firebase/firebase.utils';
+import AppButton from '../button/button.component';
 import AppFormInput from '../form-input/formInput.component';
 
 // Component Styles
@@ -69,7 +70,8 @@ const AppSignUp = () => {
 
   return (
     <div className={signUp}>
-      <h1>Sign up with your email and password</h1>
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password.</span>
       <form onSubmit={(event) => handleSubmit(event)}>
         <AppFormInput
           label="Display Name"
@@ -103,7 +105,7 @@ const AppSignUp = () => {
           value={confirmPassword}
         />
 
-        <button type="submit">Sign Up</button>
+        <AppButton type="submit">Sign Up</AppButton>
       </form>
     </div>
   );

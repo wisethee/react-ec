@@ -12,23 +12,15 @@ const useFormInputStyles = createUseStyles(({ spacing }: Theme) => ({
 }));
 
 // Component Types
-type FormInputProps = {
+type FormInputProps<C extends React.ElementType> = {
   label: string;
-  name: string;
-  value: string;
-  type: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-};
+} & React.ComponentPropsWithoutRef<C>;
 
 // @Component
-const AppFormInput = ({
+const AppFormInput = <C extends React.ElementType>({
   label,
-  name,
-  value,
-  type,
-  onChange,
-}: FormInputProps) => {
-  const props = { label, name, value, type, onChange };
+  ...props
+}: FormInputProps<C>) => {
   const { formInput } = useFormInputStyles();
 
   return (
