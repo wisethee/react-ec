@@ -12,7 +12,6 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
 // Assets -> Icons
-import { ReactComponent as IconBars } from '../../../../assets/icons/icon-bars.svg';
 import { ReactComponent as IconLogo } from '../../../../assets/icons/icon-logo.svg';
 import { ReactComponent as IconUser } from '../../../../assets/icons/icon-user.svg';
 import { ReactComponent as IconCart } from '../../../../assets/icons/icon-cart.svg';
@@ -33,9 +32,7 @@ const useNavStyles = createUseStyles(
       display: 'flex',
       marginRight: 'auto',
     },
-    navCenter: {
-      display: 'flex',
-    },
+
     navEnd: {
       display: 'flex',
       marginLeft: 'auto',
@@ -55,7 +52,10 @@ const useNavStyles = createUseStyles(
       textDecoration: 'none',
       fontSize: typography.fontSize.bodyMedium,
       color: colors.grey[700],
-      marginRight: spacing[16],
+      marginRight: spacing[8],
+      '&:nth-child(2)': {
+        marginRight: spacing[24],
+      },
     },
     badgeBg: {
       position: 'absolute',
@@ -83,19 +83,6 @@ const AppNavStart = () => {
 
   return (
     <div className={navStart}>
-      <Link to="/menu" className={link}>
-        <IconBars />
-      </Link>
-    </div>
-  );
-};
-
-// @Component
-const AppNavCenter = () => {
-  const { navCenter, link } = useNavStyles();
-
-  return (
-    <div className={navCenter}>
       <Link to="/" className={link}>
         <IconLogo />
       </Link>
@@ -110,6 +97,9 @@ const AppNavEnd = () => {
 
   return (
     <div className={navEnd}>
+      <Link to="/" className={textLink}>
+        <span>HOME</span>
+      </Link>
       <Link to="/shop" className={textLink}>
         <span>SHOP</span>
       </Link>
@@ -141,7 +131,6 @@ const AppNav = () => {
     <nav className={nav}>
       <AppContainer align="center">
         <AppNavStart />
-        <AppNavCenter />
         <AppNavEnd />
       </AppContainer>
     </nav>
