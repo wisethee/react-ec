@@ -7,8 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 // Root Component
 import App from './app/app';
 
-// User Provider
+// Providers
 import { AppUserProvider } from './app/core/contexts/user.context';
+import { AppProductsProvider } from './app/core/contexts/products.context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('app-root') as HTMLElement
@@ -18,7 +19,9 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <AppUserProvider>
-        <App />
+        <AppProductsProvider>
+          <App />
+        </AppProductsProvider>
       </AppUserProvider>
     </BrowserRouter>
   </StrictMode>
