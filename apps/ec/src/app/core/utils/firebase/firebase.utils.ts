@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { async } from 'rxjs';
@@ -38,7 +39,7 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
 // Create user document from auth
-export const createUserDocuemnt = async (
+export const createUserDocument = async (
   userAuth: any,
   aditionalInformation: any = {}
 ) => {
@@ -85,3 +86,7 @@ export const signInAuthUSerWithEmailAndPassword = async (
 
 // Sign out user
 export const signOutUser = async () => await signOut(auth);
+
+// User state obesrvable
+export const onAuthStateChangedListener = (callback: any) =>
+  onAuthStateChanged(auth, callback);

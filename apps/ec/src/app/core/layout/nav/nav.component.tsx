@@ -98,12 +98,7 @@ const AppNavCenter = () => {
 // @Component
 const AppNavEnd = () => {
   const { navEnd, link, badge, badgeBg } = useNavStyles();
-  const { currentUser, setCurrentUser } = useContext(AppUserContext);
-
-  const signOuthandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  const { currentUser } = useContext(AppUserContext);
 
   return (
     <div className={navEnd}>
@@ -112,7 +107,7 @@ const AppNavEnd = () => {
           <IconUser />
         </Link>
       ) : (
-        <span className={link} onClick={signOuthandler}>
+        <span className={link} onClick={signOutUser}>
           <IconUser />
           <span className={badgeBg}></span>
           <span className={badge}></span>

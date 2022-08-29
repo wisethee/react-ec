@@ -1,12 +1,11 @@
+import { useState } from 'react';
+
 // JSS
-import { useContext, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { AppUserContext } from '../../contexts/user.context';
 import { Theme } from '../../types/theme.type';
 
 // Utils
 import {
-  createUserDocuemnt,
   signInAuthUSerWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
@@ -46,13 +45,12 @@ const defaultFormFields = {
 
 // @Component
 // TODO: Alert user when user/email not found
+// TODO: Fix types
 const AppSignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
   const { signIn, h2, span } = useSignInStyles();
-
-  const { setCurrentUser } = useContext(AppUserContext);
 
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
@@ -68,22 +66,15 @@ const AppSignIn = () => {
     const { email, password } = formFields;
 
     try {
-      const response = await signInAuthUSerWithEmailAndPassword(
-        email,
-        password
-      );
-
-      setCurrentUser(response?.user);
-
+      await signInAuthUSerWithEmailAndPassword(email, password);
       resetFormFileds();
     } catch (error: any) {
       console.log(error);
     }
   };
 
-  const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocuemnt(user);
+  const signInWithGoogle = async () => {
+    await signInWithGooglePopup();
   };
 
   return (
@@ -108,7 +99,7 @@ const AppSignIn = () => {
         />
 
         <AppButton type="submit">Sign In</AppButton>
-        <AppButton onClick={logGoogleUser} color="primary">
+        <AppButton onClick={signInWithGoogle} color="primary">
           Sign in with Google
         </AppButton>
       </form>

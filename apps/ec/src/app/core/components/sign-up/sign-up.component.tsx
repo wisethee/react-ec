@@ -8,7 +8,7 @@ import { Theme } from '../../types/theme.type';
 // Utils
 import {
   createUserAuthWithEmailAndPassword,
-  createUserDocuemnt,
+  createUserDocument,
 } from '../../utils/firebase/firebase.utils';
 
 // Components
@@ -80,7 +80,7 @@ const AppSignUp = () => {
         password
       );
       setCurrentUser(response?.user);
-      await createUserDocuemnt(response?.user, { displayName });
+      await createUserDocument(response?.user, { displayName });
 
       resetFormFileds();
     } catch (error: any) {
