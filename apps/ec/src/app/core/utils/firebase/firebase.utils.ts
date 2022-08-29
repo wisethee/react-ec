@@ -5,8 +5,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { async } from 'rxjs';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -80,3 +82,6 @@ export const signInAuthUSerWithEmailAndPassword = async (
 
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+// Sign out user
+export const signOutUser = async () => await signOut(auth);
