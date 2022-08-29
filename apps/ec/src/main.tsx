@@ -7,6 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 // Root Component
 import App from './app/app';
 
+// User Provider
+import { AppUserProvider } from './app/core/contexts/user.context';
+
 const root = ReactDOM.createRoot(
   document.getElementById('app-root') as HTMLElement
 );
@@ -14,7 +17,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AppUserProvider>
+        <App />
+      </AppUserProvider>
     </BrowserRouter>
   </StrictMode>
 );

@@ -1,6 +1,7 @@
 // JSS
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { AppUserContext } from '../../contexts/user.context';
 import { Theme } from '../../types/theme.type';
 
 // Utils
@@ -51,6 +52,8 @@ const AppSignIn = () => {
 
   const { signIn, h2, span } = useSignInStyles();
 
+  const { setCurrentUser } = useContext(AppUserContext);
+
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
     setFormFields((prevFormFields) => ({ ...prevFormFields, [name]: value }));
@@ -65,7 +68,13 @@ const AppSignIn = () => {
     const { email, password } = formFields;
 
     try {
-      await signInAuthUSerWithEmailAndPassword(email, password);
+      const response = await signInAuthUSerWithEmailAndPassword(
+        email,
+        password
+      );
+
+      setCurrentUser(response?.user);
+
       resetFormFileds();
     } catch (error: any) {
       console.log(error);

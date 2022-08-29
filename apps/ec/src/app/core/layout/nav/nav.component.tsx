@@ -12,6 +12,9 @@ import { ReactComponent as IconBars } from '../../../../assets/icons/icon-bars.s
 import { ReactComponent as IconLogo } from '../../../../assets/icons/icon-logo.svg';
 import { ReactComponent as IconUser } from '../../../../assets/icons/icon-user.svg';
 import { ReactComponent as IconCart } from '../../../../assets/icons/icon-cart.svg';
+import classNames from '../../utils/class-names/class-names.utils';
+import { useContext } from 'react';
+import { AppUserContext } from '../../contexts/user.context';
 
 // Component Styles
 const useNavStyles = createUseStyles(({ colors, spacing }: Theme) => ({
@@ -33,6 +36,7 @@ const useNavStyles = createUseStyles(({ colors, spacing }: Theme) => ({
     marginLeft: 'auto',
   },
   link: {
+    position: 'relative',
     display: 'inline-flex',
     '&:not(:only-child):last-child': {
       marginLeft: spacing[6],
@@ -40,6 +44,32 @@ const useNavStyles = createUseStyles(({ colors, spacing }: Theme) => ({
     '& svg': {
       fill: colors.grey[700],
     },
+  },
+  badgeBg: {
+    position: 'absolute',
+    width: '8px',
+    height: '8px',
+    backgroundColor: colors.white,
+    borderRadius: '100%',
+    right: '2px',
+  },
+  badgeDisabled: {
+    position: 'absolute',
+    width: '6px',
+    height: '6px',
+    backgroundColor: colors.grey[300],
+    borderRadius: '100%',
+    right: '3px',
+    top: '1px',
+  },
+  badgeEnable: {
+    position: 'absolute',
+    width: '6px',
+    height: '6px',
+    backgroundColor: colors.red[500],
+    borderRadius: '100%',
+    right: '3px',
+    top: '1px',
   },
 }));
 
@@ -71,12 +101,22 @@ const AppNavCenter = () => {
 
 // @Component
 const AppNavEnd = () => {
-  const { navEnd, link } = useNavStyles();
+  const { navEnd, link, badgeDisabled, badgeEnable, badgeBg } = useNavStyles();
+  const { currentUser } = useContext(AppUserContext);
+
+  console.log(currentUser);
 
   return (
     <div className={navEnd}>
       <Link to="/auth" className={link}>
         <IconUser />
+        <span className={badgeBg}></span>
+        <span
+          className={classNames(
+            !currentUser && badgeDisabled,
+            currentUser && badgeEnable
+          )}
+        ></span>
       </Link>
       <Link to="/cart" className={link}>
         <IconCart />
