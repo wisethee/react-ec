@@ -3,25 +3,52 @@ import { Product } from '../../types/product.type';
 import { Theme } from '../../types/theme.type';
 import AppButton from '../button/button.component';
 
-const useProductStyles = createUseStyles((theme: Theme) => ({
-  cardContainer: {},
-  cardFooter: {},
-  cardName: {},
-  cardPrice: {},
-}));
+const useProductStyles = createUseStyles(
+  ({ spacing, typography, colors, screens }: Theme) => ({
+    cardContainer: {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      padding: [spacing[0]],
+      [`${screens['@sm']}`]: { width: '50%', padding: [spacing[1]] },
+      [`${screens['@md']}`]: { width: '33.33%', padding: [spacing[2]] },
+      [`${screens['@lg']}`]: { width: '25%', padding: [spacing[3]] },
+      [`${screens['@xl']}`]: { width: '20%', padding: [spacing[3]] },
+    },
+    cardFooter: {
+      display: 'flex',
+      placeContent: 'space-between',
+      padding: [spacing[2], spacing[0]],
+    },
+    cardText: {
+      fontSize: typography.fontSize.bodyLarge,
+      fontWeight: typography.fontWeight.medium,
+      color: colors.grey[700],
+    },
+    cardButton: {
+      position: 'absolute',
+      bottom: '90px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    cardImage: { height: '360px', width: '100%' },
+  })
+);
 
 const AppProduct = ({ product }: { product: Product }) => {
-  const { cardContainer, cardFooter, cardName, cardPrice } = useProductStyles();
+  const { cardContainer, cardFooter, cardText, cardButton, cardImage } =
+    useProductStyles();
   const { name, price, imageUrl } = product;
 
   return (
     <div className={cardContainer}>
-      <img src={imageUrl} alt={`${name}`} />
+      <img src={imageUrl} alt={`${name}`} className={cardImage} />
       <div className={cardFooter}>
-        <span className={cardName}>{name}</span>
-        <span className={cardPrice}>{price}</span>
+        <span className={cardText}>{name}</span>
+        <span className={cardText}>{`£${price}`}</span>
       </div>
-      <AppButton>Add to cart</AppButton>
+      <AppButton modifier={cardButton}>Add to cart</AppButton>
     </div>
   );
 };

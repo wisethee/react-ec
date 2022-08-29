@@ -9,6 +9,7 @@ import classNames from '../../utils/class-names/class-names.utils';
 type AppButtonProps<C extends React.ElementType> = {
   children: React.ReactNode;
   color?: 'primary' | undefined;
+  modifier?: string;
 } & React.ComponentPropsWithoutRef<C>;
 
 // Component Styles
@@ -50,13 +51,14 @@ const useButtonStyles = createUseStyles(
 const AppButton = <C extends React.ElementType>({
   children,
   color,
+  modifier,
   ...props
 }: AppButtonProps<C>) => {
   const { button, primary } = useButtonStyles();
 
   return (
     <button
-      className={classNames(button, color === 'primary' && primary)}
+      className={classNames(button, color === 'primary' && primary, modifier)}
       {...props}
     >
       {children}
