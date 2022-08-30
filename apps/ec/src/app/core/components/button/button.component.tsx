@@ -41,7 +41,7 @@ const useButtonStyles = createUseStyles(
       color: colors.white,
       marginLeft: spacing[4],
       '&:hover': {
-        backgroundColor: colors.red[400],
+        backgroundColor: colors.red[500],
       },
     },
   })

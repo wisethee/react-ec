@@ -11,7 +11,8 @@ import AppContainer from '../container/container.component';
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
 
-// Assets -> Icons
+// Icons
+import { ReactComponent as IconBars } from '../../../../assets/icons/icon-bars.svg';
 import { ReactComponent as IconLogo } from '../../../../assets/icons/icon-logo.svg';
 import { ReactComponent as IconUser } from '../../../../assets/icons/icon-user.svg';
 import { ReactComponent as IconCart } from '../../../../assets/icons/icon-cart.svg';
@@ -21,7 +22,7 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 // Component Styles
 const useNavStyles = createUseStyles(
-  ({ colors, typography, spacing }: Theme) => ({
+  ({ colors, typography, spacing, screens }: Theme) => ({
     nav: {
       display: 'flex',
       alignItems: 'center',
@@ -31,11 +32,24 @@ const useNavStyles = createUseStyles(
     navStart: {
       display: 'flex',
       marginRight: 'auto',
+      minWidth: '90px',
+      [`${screens['@lg']}`]: { minWidth: '320px' },
     },
-
+    navCenter: {},
     navEnd: {
       display: 'flex',
       marginLeft: 'auto',
+      minWidth: '90px',
+      placeContent: 'end',
+      [`${screens['@lg']}`]: { minWidth: '320px' },
+    },
+    iconMenu: {
+      display: 'flex',
+    },
+    textMenu: {
+      display: 'none',
+      marginRight: spacing[24],
+      [`${screens['@lg']}`]: { display: 'flex' },
     },
     link: {
       position: 'relative',
@@ -52,9 +66,8 @@ const useNavStyles = createUseStyles(
       textDecoration: 'none',
       fontSize: typography.fontSize.bodyMedium,
       color: colors.grey[700],
-      marginRight: spacing[8],
-      '&:nth-child(2)': {
-        marginRight: spacing[24],
+      '&:not(:last-child)': {
+        marginRight: spacing[8],
       },
     },
     badgeBg: {
@@ -83,6 +96,19 @@ const AppNavStart = () => {
 
   return (
     <div className={navStart}>
+      <Link to="/menu" className={link}>
+        <IconBars />
+      </Link>
+    </div>
+  );
+};
+
+// @Component
+const AppNavCenter = () => {
+  const { navCenter, link } = useNavStyles();
+
+  return (
+    <div className={navCenter}>
       <Link to="/" className={link}>
         <IconLogo />
       </Link>
@@ -92,33 +118,37 @@ const AppNavStart = () => {
 
 // @Component
 const AppNavEnd = () => {
-  const { navEnd, link, textLink, badge, badgeBg } = useNavStyles();
+  const { navEnd, link, textLink, badge, badgeBg, iconMenu, textMenu } =
+    useNavStyles();
   const { currentUser } = useContext(AppUserContext);
 
   return (
     <div className={navEnd}>
-      <Link to="/" className={textLink}>
-        <span>HOME</span>
-      </Link>
-      <Link to="/shop" className={textLink}>
-        <span>SHOP</span>
-      </Link>
-
-      {!currentUser ? (
-        <Link to="/auth" className={link}>
-          <IconUser />
+      <div className={textMenu}>
+        <Link to="/" className={textLink}>
+          <span>HOME</span>
         </Link>
-      ) : (
-        <span className={link} onClick={signOutUser}>
-          <IconUser />
-          <span className={badgeBg}></span>
-          <span className={badge}></span>
-        </span>
-      )}
+        <Link to="/shop" className={textLink}>
+          <span>SHOP</span>
+        </Link>
+      </div>
 
-      <Link to="/cart" className={link}>
-        <IconCart />
-      </Link>
+      <div className={iconMenu}>
+        {!currentUser ? (
+          <Link to="/auth" className={link}>
+            <IconUser />
+          </Link>
+        ) : (
+          <span className={link} onClick={signOutUser}>
+            <IconUser />
+            <span className={badgeBg}></span>
+            <span className={badge}></span>
+          </span>
+        )}
+        <Link to="/cart" className={link}>
+          <IconCart />
+        </Link>
+      </div>
     </div>
   );
 };
@@ -131,6 +161,7 @@ const AppNav = () => {
     <nav className={nav}>
       <AppContainer align="center">
         <AppNavStart />
+        <AppNavCenter />
         <AppNavEnd />
       </AppContainer>
     </nav>
