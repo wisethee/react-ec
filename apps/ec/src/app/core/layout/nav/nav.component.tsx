@@ -20,10 +20,14 @@ import { ReactComponent as IconCart } from '../../../../assets/icons/icon-cart.s
 // Firebase
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
+// Components
+import AppCartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+
 // Component Styles
 const useNavStyles = createUseStyles(
   ({ colors, typography, spacing, screens }: Theme) => ({
     nav: {
+      position: 'relative',
       display: 'flex',
       alignItems: 'center',
       height: spacing[24],
@@ -55,6 +59,7 @@ const useNavStyles = createUseStyles(
       position: 'relative',
       display: 'inline-flex',
       cursor: 'pointer',
+      textDecoration: 'none',
       '&:not(:only-child):last-child': {
         marginLeft: spacing[6],
       },
@@ -87,6 +92,23 @@ const useNavStyles = createUseStyles(
       right: '3px',
       top: '1px',
     },
+    label: {
+      position: 'absolute',
+      fontSize: typography.fontSize.labelSmall,
+      lineHeight: typography.leading.labelSmall,
+      top: '0',
+      right: '0',
+      color: colors.white,
+    },
+    labelBg: {
+      position: 'absolute',
+      width: '16px',
+      height: '16px',
+      backgroundColor: colors.red[500],
+      borderRadius: '100%',
+      right: '-4.5px',
+      top: '0',
+    },
   })
 );
 
@@ -118,8 +140,17 @@ const AppNavCenter = () => {
 
 // @Component
 const AppNavEnd = () => {
-  const { navEnd, link, textLink, badge, badgeBg, iconMenu, textMenu } =
-    useNavStyles();
+  const {
+    navEnd,
+    link,
+    textLink,
+    badge,
+    badgeBg,
+    iconMenu,
+    textMenu,
+    label,
+    labelBg,
+  } = useNavStyles();
   const { currentUser } = useContext(AppUserContext);
 
   return (
@@ -145,9 +176,11 @@ const AppNavEnd = () => {
             <span className={badge}></span>
           </span>
         )}
-        <Link to="/cart" className={link}>
+        <span className={link}>
           <IconCart />
-        </Link>
+          <span className={labelBg}></span>
+          <span className={label}>0</span>
+        </span>
       </div>
     </div>
   );
@@ -164,6 +197,7 @@ const AppNav = () => {
         <AppNavCenter />
         <AppNavEnd />
       </AppContainer>
+      <AppCartDropdown />
     </nav>
   );
 };
