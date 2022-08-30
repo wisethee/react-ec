@@ -10,6 +10,7 @@ import App from './app/app';
 // Providers
 import { AppUserProvider } from './app/core/contexts/user.context';
 import { AppProductsProvider } from './app/core/contexts/products.context';
+import { AppCartProvider } from './app/core/contexts/cart.context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('app-root') as HTMLElement
@@ -20,7 +21,9 @@ root.render(
     <BrowserRouter>
       <AppUserProvider>
         <AppProductsProvider>
-          <App />
+          <AppCartProvider>
+            <App />
+          </AppCartProvider>
         </AppProductsProvider>
       </AppUserProvider>
     </BrowserRouter>

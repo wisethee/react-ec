@@ -22,6 +22,7 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 // Components
 import AppCartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+import { AppCartContext } from '../../contexts/cart.context';
 
 // Component Styles
 const useNavStyles = createUseStyles(
@@ -152,6 +153,9 @@ const AppNavEnd = () => {
     labelBg,
   } = useNavStyles();
   const { currentUser } = useContext(AppUserContext);
+  const { isCartOpen, setIsCartOpen } = useContext(AppCartContext);
+
+  const toogleIsCartOpen = () => setIsCartOpen(!isCartOpen);
 
   return (
     <div className={navEnd}>
@@ -176,7 +180,7 @@ const AppNavEnd = () => {
             <span className={badge}></span>
           </span>
         )}
-        <span className={link}>
+        <span className={link} onClick={toogleIsCartOpen}>
           <IconCart />
           <span className={labelBg}></span>
           <span className={label}>0</span>
@@ -189,6 +193,7 @@ const AppNavEnd = () => {
 // @Component
 const AppNav = () => {
   const { nav } = useNavStyles();
+  const { isCartOpen } = useContext(AppCartContext);
 
   return (
     <nav className={nav}>
@@ -197,7 +202,7 @@ const AppNav = () => {
         <AppNavCenter />
         <AppNavEnd />
       </AppContainer>
-      <AppCartDropdown />
+      {isCartOpen && <AppCartDropdown />}
     </nav>
   );
 };
