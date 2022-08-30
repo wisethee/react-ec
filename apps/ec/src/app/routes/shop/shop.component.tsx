@@ -30,7 +30,7 @@ const useShopStyles = createUseStyles(
       maxWidth: '480px',
       fontSize: typography.fontSize.bodyMedium,
       color: colors.grey[500],
-      marginBottom: spacing[16],
+      marginBottom: spacing[12],
       textAlign: 'center',
     },
   })

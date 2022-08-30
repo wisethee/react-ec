@@ -6,7 +6,7 @@ import { Theme } from '../../core/types/theme.type';
 
 // Layout
 import AppContainer from '../../core/layout/container/container.component';
-import AppHero from '../../core/layout/hero/hero.component';
+// import AppHero from '../../core/layout/hero/hero.component';
 
 // Components
 import AppDirectory from '../../core/components/directory/directory.component';
@@ -36,7 +36,7 @@ const useHomeStyles = createUseStyles(
       maxWidth: '480px',
       fontSize: typography.fontSize.bodyMedium,
       color: colors.grey[500],
-      marginBottom: spacing[16],
+      marginBottom: spacing[12],
       textAlign: 'center',
     },
   })
@@ -72,7 +72,7 @@ const AppHome = () => {
   return (
     <Fragment>
       {/* <AppHero /> */}
-      <AppContainer fluid={false}>
+      <AppContainer fluid={true}>
         <div className={inner}>
           <h2>Top Categories</h2>
           <span className={span}>
