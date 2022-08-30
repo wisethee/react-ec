@@ -33,7 +33,7 @@ const useCartDropdownStyles = createUseStyles(
       padding: spacing[4],
     },
     cartButton: {
-      marginTop: spacing[16],
+      marginTop: spacing[12],
       width: '100%',
     },
   })
@@ -47,9 +47,11 @@ const AppCartDropdown = () => {
   return (
     <div className={cartDropdown}>
       <div className={cartInner}>
-        {cartItems?.map((cartItem) => (
-          <AppCartItem key={cartItem.id} cartItem={cartItem} />
-        ))}
+        {cartItems?.map(
+          (cartItem) =>
+            cartItem && <AppCartItem key={cartItem.id} cartItem={cartItem} />
+        )}
+        {cartItems.length === 0 && <span>No items in the cart!</span>}
         <AppButton modifier={cartButton}>Go To Cart</AppButton>
       </div>
     </div>

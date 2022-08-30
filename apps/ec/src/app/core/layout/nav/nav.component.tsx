@@ -154,8 +154,10 @@ const AppNavEnd = () => {
   } = useNavStyles();
   const { currentUser } = useContext(AppUserContext);
   const { isCartOpen, setIsCartOpen } = useContext(AppCartContext);
+  const { cartCount } = useContext(AppCartContext);
 
   const toogleIsCartOpen = () => setIsCartOpen(!isCartOpen);
+  // const countCartItems = () => {};
 
   return (
     <div className={navEnd}>
@@ -183,7 +185,7 @@ const AppNavEnd = () => {
         <span className={link} onClick={toogleIsCartOpen}>
           <IconCart />
           <span className={labelBg}></span>
-          <span className={label}>0</span>
+          <span className={label}>{cartCount}</span>
         </span>
       </div>
     </div>
