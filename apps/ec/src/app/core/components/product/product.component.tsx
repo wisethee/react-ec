@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
+import { AppCartContext } from '../../contexts/cart.context';
 import { Product } from '../../types/product.type';
 import { Theme } from '../../types/theme.type';
 import AppButton from '../button/button.component';
@@ -41,6 +43,9 @@ const AppProduct = ({ product }: { product: Product }) => {
   const { cardContainer, cardFooter, cardText, cardButton, cardImage } =
     useProductStyles();
   const { name, price, imageUrl } = product;
+  const { addItemToCart } = useContext(AppCartContext);
+
+  const addProductToCart = () => addItemToCart(product);
 
   return (
     <div className={cardContainer}>
@@ -49,7 +54,11 @@ const AppProduct = ({ product }: { product: Product }) => {
         <span className={cardText}>{name}</span>
         <span className={cardText}>{`£${price}`}</span>
       </div>
-      <AppButton modifier={cardButton} color="inverted">
+      <AppButton
+        modifier={cardButton}
+        color="inverted"
+        onClick={addProductToCart}
+      >
         Add to cart
       </AppButton>
     </div>

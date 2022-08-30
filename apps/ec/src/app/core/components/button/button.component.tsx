@@ -9,6 +9,7 @@ import classNames from '../../utils/class-names/class-names.utils';
 type AppButtonProps<C extends React.ElementType> = {
   children: React.ReactNode;
   color?: 'primary' | 'inverted' | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   modifier?: string;
 } & React.ComponentPropsWithoutRef<C>;
 
@@ -64,6 +65,7 @@ const AppButton = <C extends React.ElementType>({
   children,
   color,
   modifier,
+  onClick,
   ...props
 }: AppButtonProps<C>) => {
   const { button, primary, inverted } = useButtonStyles();
@@ -77,6 +79,7 @@ const AppButton = <C extends React.ElementType>({
         modifier
       )}
       {...props}
+      onClick={onClick}
     >
       {children}
     </button>

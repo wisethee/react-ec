@@ -1,22 +1,53 @@
 import { createContext, useState } from 'react';
+import { CartItem } from '../types/cart-item.type';
+import { Product } from '../types/product.type';
 
 type CartContext = {
   isCartOpen: boolean;
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  cartItems: CartItem[];
+  addItemToCart: (productToAdd: Product) => void;
 };
 
 type CartContextProps = {
   children: React.ReactNode;
 };
 
+const addCartItem = (
+  cartItems: CartItem[],
+  productToAdd: Product
+): CartItem[] => {
+  const cartItemExists = cartItems.find(
+    (cartItem) => cartItem.id === productToAdd.id
+  );
+
+  if (cartItemExists) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === productToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+  }
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
+};
+
 export const AppCartContext = createContext<CartContext>({
   isCartOpen: false,
   setIsCartOpen: () => false,
+  cartItems: [],
+  addItemToCart: () => null,
 });
 
 export const AppCartProvider = ({ children }: CartContextProps) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const value = { isCartOpen, setIsCartOpen };
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const addItemToCart = (productToAdd: Product) => {
+    setCartItems(addCartItem(cartItems, productToAdd));
+  };
+
+  const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart };
+
   return (
     <AppCartContext.Provider value={value}>{children}</AppCartContext.Provider>
   );

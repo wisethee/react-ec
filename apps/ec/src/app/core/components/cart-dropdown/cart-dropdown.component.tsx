@@ -1,7 +1,10 @@
 // JSS
+import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
+import { AppCartContext } from '../../contexts/cart.context';
 import { Theme } from '../../types/theme.type';
 import AppButton from '../button/button.component';
+import AppCartItem from '../cart-item/cart-item.component';
 
 // Component Styles
 const useCartDropdownStyles = createUseStyles(
@@ -39,10 +42,14 @@ const useCartDropdownStyles = createUseStyles(
 // @Component
 const AppCartDropdown = () => {
   const { cartDropdown, cartInner, cartButton } = useCartDropdownStyles();
+  const { cartItems } = useContext(AppCartContext);
+
   return (
     <div className={cartDropdown}>
       <div className={cartInner}>
-        <span>cart items</span>
+        {cartItems?.map((cartItem) => (
+          <AppCartItem key={cartItem.id} cartItem={cartItem} />
+        ))}
         <AppButton modifier={cartButton}>Go To Cart</AppButton>
       </div>
     </div>
