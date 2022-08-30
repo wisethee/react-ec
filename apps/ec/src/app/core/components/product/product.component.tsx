@@ -22,7 +22,7 @@ const useProductStyles = createUseStyles(
       padding: [spacing[2], spacing[0]],
     },
     cardText: {
-      fontSize: typography.fontSize.bodyLarge,
+      fontSize: typography.fontSize.titleSmall,
       fontWeight: typography.fontWeight.medium,
       color: colors.grey[700],
     },
@@ -48,7 +48,9 @@ const AppProduct = ({ product }: { product: Product }) => {
         <span className={cardText}>{name}</span>
         <span className={cardText}>{`£${price}`}</span>
       </div>
-      <AppButton modifier={cardButton}>Add to cart</AppButton>
+      <AppButton modifier={cardButton} color="inverted">
+        Add to cart
+      </AppButton>
     </div>
   );
 };

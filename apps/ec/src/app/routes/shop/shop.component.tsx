@@ -9,7 +9,7 @@ import { Theme } from '../../core/types/theme.type';
 const useShopStyles = createUseStyles(
   ({ spacing, colors, typography }: Theme) => ({
     inner: {
-      padding: [spacing[12], spacing[0]],
+      padding: [spacing[16], spacing[0]],
       '& h2': {
         fontSize: typography.fontSize.displaySmall,
         lineHeight: typography.leading.displaySmall,

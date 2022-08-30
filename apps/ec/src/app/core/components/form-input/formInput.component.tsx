@@ -1,6 +1,13 @@
 // JSS
 import { createUseStyles } from 'react-jss';
 import { Theme } from '../../types/theme.type';
+import classNames from '../../utils/class-names/class-names.utils';
+
+// Component Types
+type FormInputProps<C extends React.ElementType> = {
+  label: string;
+  modifier?: string;
+} & React.ComponentPropsWithoutRef<C>;
 
 // Component Styles
 const useFormInputStyles = createUseStyles(
@@ -8,7 +15,7 @@ const useFormInputStyles = createUseStyles(
     formInput: {
       display: 'flex',
       flexDirection: 'column',
-      marginBottom: spacing[8],
+      marginBottom: spacing[12],
     },
     inputLabel: {
       fontSize: typography.fontSize.labelMedium,
@@ -16,7 +23,7 @@ const useFormInputStyles = createUseStyles(
     },
     input: {
       width: '100%',
-      padding: [spacing[1], spacing[0]],
+      padding: [spacing[2], spacing[0]],
       boxSizing: 'border-box',
       border: 'none',
       borderBottomColor: colors.grey[500],
@@ -24,24 +31,21 @@ const useFormInputStyles = createUseStyles(
       borderBottomWidth: '2px',
       color: colors.grey[500],
       outline: 'none',
+      backgroundColor: colors.grey[50],
     },
   })
 );
 
-// Component Types
-type FormInputProps<C extends React.ElementType> = {
-  label: string;
-} & React.ComponentPropsWithoutRef<C>;
-
 // @Component
 const AppFormInput = <C extends React.ElementType>({
   label,
+  modifier,
   ...props
 }: FormInputProps<C>) => {
   const { formInput, inputLabel, input } = useFormInputStyles();
 
   return (
-    <div className={formInput}>
+    <div className={classNames(formInput, modifier)}>
       <label className={inputLabel}>{label}</label>
       <input className={input} required {...props} />
     </div>

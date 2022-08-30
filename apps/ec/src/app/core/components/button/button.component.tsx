@@ -8,7 +8,7 @@ import classNames from '../../utils/class-names/class-names.utils';
 // Component Types
 type AppButtonProps<C extends React.ElementType> = {
   children: React.ReactNode;
-  color?: 'primary' | undefined;
+  color?: 'primary' | 'inverted' | undefined;
   modifier?: string;
 } & React.ComponentPropsWithoutRef<C>;
 
@@ -31,17 +31,29 @@ const useButtonStyles = createUseStyles(
       minWidth: spacing[16],
       lineHeight: spacing[9],
       padding: [spacing[0], spacing[4]],
-      borderRadius: spacing[1],
       overflow: 'visible',
-      color: colors.grey[700],
       fontWeight: typography.fontWeight.semiboild,
+      backgroundColor: colors.grey[700],
+      color: colors.white,
+      '&:hover': {
+        backgroundColor: colors.grey[500],
+      },
     },
     primary: {
       backgroundColor: colors.red[500],
       color: colors.white,
-      marginLeft: spacing[4],
       '&:hover': {
-        backgroundColor: colors.red[500],
+        backgroundColor: colors.red[700],
+      },
+    },
+    inverted: {
+      backgroundColor: 'transparent',
+      color: colors.white,
+      border: `2px solid ${colors.white}`,
+      '&:hover': {
+        backgroundColor: colors.grey[50],
+        color: colors.grey[700],
+        border: `2px solid ${colors.grey[700]}`,
       },
     },
   })
@@ -54,11 +66,16 @@ const AppButton = <C extends React.ElementType>({
   modifier,
   ...props
 }: AppButtonProps<C>) => {
-  const { button, primary } = useButtonStyles();
+  const { button, primary, inverted } = useButtonStyles();
 
   return (
     <button
-      className={classNames(button, color === 'primary' && primary, modifier)}
+      className={classNames(
+        button,
+        color === 'primary' && primary,
+        color === 'inverted' && inverted,
+        modifier
+      )}
       {...props}
     >
       {children}

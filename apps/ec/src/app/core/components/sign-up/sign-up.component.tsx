@@ -35,6 +35,9 @@ const useSignUpStyles = createUseStyles(
       color: colors.grey[500],
       marginBottom: spacing[16],
     },
+    marginFormInput: {
+      marginBottom: spacing[6],
+    },
   })
 );
 
@@ -52,7 +55,7 @@ const AppSignUp = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const { signUp, h2, span } = useSignUpStyles();
+  const { signUp, h2, span, marginFormInput } = useSignUpStyles();
 
   const { setCurrentUser } = useContext(AppUserContext);
 
@@ -123,6 +126,7 @@ const AppSignUp = () => {
           onChange={hadleChange}
           name="confirmPassword"
           value={confirmPassword}
+          modifier={marginFormInput}
         />
 
         <AppButton type="submit">Sign Up</AppButton>

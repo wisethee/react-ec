@@ -34,6 +34,12 @@ const useSignInStyles = createUseStyles(
       color: colors.grey[500],
       marginBottom: spacing[16],
     },
+    marginFormInput: {
+      marginBottom: spacing[6],
+    },
+    marginButton: {
+      marginLeft: spacing[4],
+    },
   })
 );
 
@@ -50,7 +56,7 @@ const AppSignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { signIn, h2, span } = useSignInStyles();
+  const { signIn, h2, span, marginFormInput, marginButton } = useSignInStyles();
 
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
@@ -96,10 +102,15 @@ const AppSignIn = () => {
           onChange={hadleChange}
           name="password"
           value={password}
+          modifier={marginFormInput}
         />
 
         <AppButton type="submit">Sign In</AppButton>
-        <AppButton onClick={signInWithGoogle} color="primary">
+        <AppButton
+          onClick={signInWithGoogle}
+          color="primary"
+          modifier={marginButton}
+        >
           Sign in with Google
         </AppButton>
       </form>
