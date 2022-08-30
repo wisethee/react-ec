@@ -1,22 +1,27 @@
 import { createContext, useState } from 'react';
-import PRODUCTS from '../../shop-data.json';
+
+// Types
 import { Product } from '../types/product.type';
 
-type AppProductsProviderProps = {
-  children: React.ReactNode;
-};
+// Dummy data
+import PRODUCTS from '../../shop-data.json';
 
 type ProductsContext = {
   products: Product[];
 };
 
+type AppProductsProviderProps = {
+  children: React.ReactNode;
+};
+
+// @Context
 export const AppProductsContext = createContext<ProductsContext>({
   products: [],
 });
 
+// @Provider
 export const AppProductsProvider = ({ children }: AppProductsProviderProps) => {
   const [products, useProducts] = useState(PRODUCTS);
-
   const value = { products };
 
   return (
