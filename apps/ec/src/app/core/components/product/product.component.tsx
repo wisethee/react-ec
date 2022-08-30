@@ -10,6 +10,7 @@ const useProductStyles = createUseStyles(
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
+      height: '420px',
       padding: [spacing[0]],
       [`${screens['@sm']}`]: { width: '50%', padding: [spacing[1]] },
       [`${screens['@md']}`]: { width: '33.33%', padding: [spacing[2]] },
@@ -32,7 +33,7 @@ const useProductStyles = createUseStyles(
       left: '50%',
       transform: 'translateX(-50%)',
     },
-    cardImage: { height: '360px', width: '100%' },
+    cardImage: { height: '360px', width: 'auto' },
   })
 );
 

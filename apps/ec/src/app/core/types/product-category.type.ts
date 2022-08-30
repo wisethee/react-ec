@@ -1,1 +1,1 @@
-export type ProductCategory = { id: string; title: string; imageUrl: string };
+export type ProductCategory = { id: number; title: string; imageUrl: string };
