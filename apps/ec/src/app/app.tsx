@@ -12,6 +12,7 @@ import AppNav from './core/layout/nav/nav.component';
 
 // Routes
 import AppAuth from './routes/auth/auth.component';
+import AppCart from './routes/cart/cart.component';
 import AppHome from './routes/home/home.component';
 import AppNotFound from './routes/not-found/not-found.component';
 import AppShop from './routes/shop/shop.component';
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/" element={<AppHome />} />
           <Route path="/auth" element={<AppAuth />} />
           <Route path="/shop" element={<AppShop />} />
+          <Route path="/cart" element={<AppCart />} />
           <Route path="*" element={<AppNotFound />} />
         </Route>
       </Routes>
