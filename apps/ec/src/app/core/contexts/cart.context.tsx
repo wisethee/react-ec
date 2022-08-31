@@ -8,7 +8,9 @@ type CartContext = {
   cartItems: CartItem[];
   addItemToCart: (productToAdd: Product) => any;
   removeItemFromCart: (productToAdd: Product) => any;
+  clearItemFromCart: (productToAdd: Product) => any;
   cartCount: number;
+  cartTotal: number;
 };
 
 type CartContextProps = {
@@ -49,19 +51,26 @@ const removeCartItem = (cartItems: CartItem[], cartItemToRemove: Product) => {
   );
 };
 
+const clearCartItem = (cartItems: CartItem[], cartItemToClear: Product) => {
+  return cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+};
+
 export const AppCartContext = createContext<CartContext>({
   isCartOpen: false,
   setIsCartOpen: () => false,
   cartItems: [],
   addItemToCart: () => null,
   removeItemFromCart: () => null,
+  clearItemFromCart: () => null,
   cartCount: 0,
+  cartTotal: 0,
 });
 
 export const AppCartProvider = ({ children }: CartContextProps) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartCount, setCartCount] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -69,6 +78,14 @@ export const AppCartProvider = ({ children }: CartContextProps) => {
       0
     );
     setCartCount(newCartCount);
+  }, [cartItems]);
+
+  useEffect(() => {
+    const newCartTotal = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+    setCartTotal(newCartTotal);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd: Product) => {
@@ -79,13 +96,19 @@ export const AppCartProvider = ({ children }: CartContextProps) => {
     setCartItems(removeCartItem(cartItems, cartItemToRemove));
   };
 
+  const clearItemFromCart = (cartItemToClear: Product) => {
+    setCartItems(clearCartItem(cartItems, cartItemToClear));
+  };
+
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
     removeItemFromCart,
+    clearItemFromCart,
     cartCount,
+    cartTotal,
   };
 
   return (
