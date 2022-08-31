@@ -5,6 +5,7 @@ import classNames from '../../utils/class-names/class-names.utils';
 
 // Types
 import { ProductCategory } from '../../types/product-category.type';
+import { useNavigate } from 'react-router-dom';
 
 // Component Styles
 const useCategoryStyles = createUseStyles(
@@ -38,13 +39,17 @@ type AppCategoryProps = { productCategory: ProductCategory };
 
 // @Component
 const AppCategory = ({ productCategory }: AppCategoryProps) => {
-  const { id, title, imageUrl } = productCategory;
+  const { id, title, imageUrl, route } = productCategory;
   const { category, id3, id4, heading } = useCategoryStyles();
+
+  const navigate = useNavigate();
+  const goToCategory = () => navigate(route);
 
   return (
     <div
       className={classNames(category, id === 3 && id3, id === 4 && id4)}
       style={{ backgroundImage: `url(${imageUrl})` }}
+      onClick={goToCategory}
     >
       <span className={heading}>{title}</span>
     </div>

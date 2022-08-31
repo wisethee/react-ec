@@ -44,30 +44,6 @@ const useHomeStyles = createUseStyles(
 
 // @Component
 const AppHome = () => {
-  const productCategories: ProductCategory[] = [
-    {
-      id: 1,
-      title: 'jackets',
-      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-    },
-    {
-      id: 2,
-      title: 'sneakers',
-      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-    },
-    {
-      id: 3,
-      title: 'womens',
-      imageUrl:
-        'https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1530&q=80',
-    },
-    {
-      id: 4,
-      title: 'mens',
-      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-    },
-  ];
-
   const { inner, span } = useHomeStyles();
 
   return (
@@ -80,7 +56,7 @@ const AppHome = () => {
             Nam liber tempor cum soluta nobis eleifend option congue nihil
             imperdiet doming id quod mazim placerat facer possim assum.
           </span>
-          <AppDirectory productCategories={productCategories} />
+          <AppDirectory />
         </div>
       </AppContainer>
     </Fragment>
