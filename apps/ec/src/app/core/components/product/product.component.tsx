@@ -55,7 +55,7 @@ const AppProduct = ({ product }: { product: CategoriesMap }) => {
         <span className={cardText}>{`£${price}`}</span>
       </div>
       <AppButton
-        modifier={cardButton}
+        classModifier={cardButton}
         color="inverted"
         onClick={addProductToCart}
       >

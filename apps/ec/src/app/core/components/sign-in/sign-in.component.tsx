@@ -109,7 +109,7 @@ const AppSignIn = () => {
         <AppButton
           onClick={signInWithGoogle}
           color="primary"
-          modifier={marginButton}
+          classModifier={marginButton}
         >
           Sign in with Google
         </AppButton>

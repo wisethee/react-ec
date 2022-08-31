@@ -18,6 +18,7 @@ const useCategoryStyles = createUseStyles(
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       padding: spacing[6],
+      cursor: 'pointer',
     },
     id3: {
       gridRow: 'span 2/span 2',

@@ -1,14 +1,22 @@
-import { CategoriesMap } from '../../types/category-map.type';
-import { Theme } from '../../types/theme.type';
-import AppProduct from '../product/product.component';
-import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+// JSS
+import { createUseStyles } from 'react-jss';
+import { Theme } from '../../types/theme.type';
+
+// Components
+import AppProduct from '../product/product.component';
+
+// Types
+import { CategoriesMap } from '../../types/category-map.type';
+
+// Component Types
 type CategoryPreviewProps = {
   title: string;
   products: CategoriesMap[];
 };
 
+// Component Styles
 const useShopStyles = createUseStyles(
   ({ spacing, colors, typography }: Theme) => ({
     category: {
@@ -40,6 +48,7 @@ const useShopStyles = createUseStyles(
   })
 );
 
+// @Components
 const AppCategoryPreview = ({ title, products }: CategoryPreviewProps) => {
   const { category, categoryInner, categoryTitle } = useShopStyles();
   return (

@@ -1,40 +1,15 @@
-import { createUseStyles } from 'react-jss';
+// Styles
+import { useCartItemStyles } from './cart-item.styles';
+
+// Types
 import { CartItem } from '../../types/cart-item.type';
-import { Theme } from '../../types/theme.type';
 
-const useCartItemStyles = createUseStyles(
-  ({ spacing, typography, colors }: Theme) => ({
-    cartItemContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: spacing[4],
-    },
-    cartItemInner: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-    },
-    cartItemImage: {
-      width: '72px',
-      height: 'auto',
-      marginRight: spacing[4],
-    },
-    cartItemName: {
-      fontSize: typography.fontSize.titleLarge,
-      fontWeight: typography.fontWeight.medium,
-      color: colors.grey[700],
-    },
-    cartItemText: {
-      fontSize: typography.fontSize.bodyLarge,
-      color: colors.grey[500],
-    },
-  })
-);
-
+// Component Types
 type CartItemProps = {
   cartItem: CartItem;
 };
 
+// @Component
 const AppCartItem = ({ cartItem }: CartItemProps) => {
   const { name, quantity, imageUrl, price } = cartItem;
   const {
