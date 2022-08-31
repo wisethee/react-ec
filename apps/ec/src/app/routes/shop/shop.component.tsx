@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
-import AppProduct from '../../core/components/product/product.component';
-import { AppCategoriesContext } from '../../core/contexts/categories.context';
+import { Route, Routes } from 'react-router-dom';
 import AppContainer from '../../core/layout/container/container.component';
-import { CategoriesMap } from '../../core/types/category-map.type';
 import { Theme } from '../../core/types/theme.type';
+import AppCategoriesPreview from '../categories-preview/categories-preview.component';
+import AppSingleCategory from '../single-category/single-category.component';
 
 const useShopStyles = createUseStyles(
   ({ spacing, colors, typography }: Theme) => ({
@@ -22,31 +21,6 @@ const useShopStyles = createUseStyles(
       marginBottom: spacing[2],
       textAlign: 'center',
     },
-    shop: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-    },
-    category: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      marginBottom: spacing[16],
-    },
-    categoryInner: {
-      display: 'flex',
-      width: '100%',
-      flexWrap: 'wrap',
-    },
-    categoryTitle: {
-      fontSize: typography.fontSize.displaySmall,
-      lineHeight: typography.leading.displaySmall,
-      color: colors.grey[700],
-      marginBottom: spacing[2],
-      textTransform: 'capitalize',
-      textAlign: 'start',
-      paddingLeft: spacing[3],
-    },
     span: {
       display: 'flex',
       maxWidth: '480px',
@@ -59,11 +33,7 @@ const useShopStyles = createUseStyles(
 );
 
 const AppShop = () => {
-  const { categoriesMap } = useContext(AppCategoriesContext);
-  const { shop, inner, span, category, categoryInner, categoryTitle, h2 } =
-    useShopStyles();
-
-  console.log(categoriesMap);
+  const { inner, span, h2 } = useShopStyles();
 
   return (
     <AppContainer>
@@ -73,18 +43,10 @@ const AppShop = () => {
           Nam liber tempor cum soluta nobis eleifend option congue nihil
           imperdiet doming id quod mazim placerat facer possim assum.
         </span>
-        <div className={shop}>
-          {Object.keys(categoriesMap).map((title) => (
-            <div key={title} className={category}>
-              <h2 className={categoryTitle}>{title}</h2>
-              <div className={categoryInner}>
-                {categoriesMap[title].map((product: CategoriesMap) => (
-                  <AppProduct key={product.id} product={product}></AppProduct>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <Routes>
+          <Route index element={<AppCategoriesPreview />} />
+          <Route path=":category" element={<AppSingleCategory />} />
+        </Routes>
       </div>
     </AppContainer>
   );

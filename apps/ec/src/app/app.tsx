@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/" element={<AppMain />}>
           <Route path="/" element={<AppHome />} />
           <Route path="/auth" element={<AppAuth />} />
-          <Route path="/shop" element={<AppShop />} />
+          <Route path="/shop/*" element={<AppShop />} />
           <Route path="/cart" element={<AppCart />} />
           <Route path="*" element={<AppNotFound />} />
         </Route>
