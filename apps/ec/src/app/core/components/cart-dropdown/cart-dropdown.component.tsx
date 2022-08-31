@@ -1,7 +1,7 @@
 // JSS
 import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppCartContext } from '../../contexts/cart.context';
 import { Theme } from '../../types/theme.type';
 import AppButton from '../button/button.component';
@@ -45,6 +45,9 @@ const AppCartDropdown = () => {
   const { cartDropdown, cartInner, cartButton } = useCartDropdownStyles();
   const { cartItems } = useContext(AppCartContext);
 
+  const navigate = useNavigate();
+  const goToCart = () => navigate('/cart');
+
   return (
     <div className={cartDropdown}>
       <div className={cartInner}>
@@ -53,9 +56,10 @@ const AppCartDropdown = () => {
             cartItem && <AppCartItem key={cartItem.id} cartItem={cartItem} />
         )}
         {cartItems.length === 0 && <span>No items in the cart!</span>}
-        <Link to="/cart">
-          <AppButton modifier={cartButton}>Go To Cart</AppButton>
-        </Link>
+
+        <AppButton modifier={cartButton} onClick={goToCart}>
+          Go To Cart
+        </AppButton>
       </div>
     </div>
   );
