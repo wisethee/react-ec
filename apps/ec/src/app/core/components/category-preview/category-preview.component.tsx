@@ -2,6 +2,7 @@ import { CategoriesMap } from '../../types/category-map.type';
 import { Theme } from '../../types/theme.type';
 import AppProduct from '../product/product.component';
 import { createUseStyles } from 'react-jss';
+import { Link } from 'react-router-dom';
 
 type CategoryPreviewProps = {
   title: string;
@@ -24,11 +25,17 @@ const useShopStyles = createUseStyles(
     categoryTitle: {
       fontSize: typography.fontSize.displaySmall,
       lineHeight: typography.leading.displaySmall,
-      color: colors.grey[700],
       marginBottom: spacing[2],
       textTransform: 'capitalize',
       textAlign: 'start',
       paddingLeft: spacing[3],
+      '& a': {
+        textDecoration: 'none',
+        color: colors.grey[700],
+      },
+      '& a:hover': {
+        color: colors.grey[500],
+      },
     },
   })
 );
@@ -38,7 +45,9 @@ const AppCategoryPreview = ({ title, products }: CategoryPreviewProps) => {
   return (
     <div className={category}>
       <h2 className={categoryTitle}>
-        <span>{title}</span>
+        <Link to={title}>
+          <span>{title}</span>
+        </Link>
       </h2>
       <div className={categoryInner}>
         {products
