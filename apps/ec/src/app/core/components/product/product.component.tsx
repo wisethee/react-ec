@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { AppCartContext } from '../../contexts/cart.context';
-import { Product } from '../../types/product.type';
+import { CategoriesMap } from '../../types/category-map.type';
 import { Theme } from '../../types/theme.type';
 import AppButton from '../button/button.component';
 
@@ -39,7 +39,7 @@ const useProductStyles = createUseStyles(
   })
 );
 
-const AppProduct = ({ product }: { product: Product }) => {
+const AppProduct = ({ product }: { product: CategoriesMap }) => {
   const { cardContainer, cardFooter, cardText, cardButton, cardImage } =
     useProductStyles();
   const { name, price, imageUrl } = product;

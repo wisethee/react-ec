@@ -1,4 +1,4 @@
-export type Product = {
+export type CategoriesMap = {
   id: number;
   name: string;
   imageUrl: string;

@@ -1,14 +1,14 @@
 import { createContext, useEffect, useState } from 'react';
 import { CartItem } from '../types/cart-item.type';
-import { Product } from '../types/product.type';
+import { CategoriesMap } from '../types/category-map.type';
 
 type CartContext = {
   isCartOpen: boolean;
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cartItems: CartItem[];
-  addItemToCart: (productToAdd: Product) => any;
-  removeItemFromCart: (productToAdd: Product) => any;
-  clearItemFromCart: (productToAdd: Product) => any;
+  addItemToCart: (productToAdd: CategoriesMap) => any;
+  removeItemFromCart: (productToAdd: CategoriesMap) => any;
+  clearItemFromCart: (productToAdd: CategoriesMap) => any;
   cartCount: number;
   cartTotal: number;
 };
@@ -19,7 +19,7 @@ type CartContextProps = {
 
 const addCartItem = (
   cartItems: CartItem[],
-  productToAdd: Product
+  productToAdd: CategoriesMap
 ): CartItem[] => {
   const cartItemExists = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
@@ -35,7 +35,10 @@ const addCartItem = (
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems: CartItem[], cartItemToRemove: Product) => {
+const removeCartItem = (
+  cartItems: CartItem[],
+  cartItemToRemove: CategoriesMap
+) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToRemove.id
   );
@@ -51,7 +54,10 @@ const removeCartItem = (cartItems: CartItem[], cartItemToRemove: Product) => {
   );
 };
 
-const clearCartItem = (cartItems: CartItem[], cartItemToClear: Product) => {
+const clearCartItem = (
+  cartItems: CartItem[],
+  cartItemToClear: CategoriesMap
+) => {
   return cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 };
 
@@ -88,15 +94,15 @@ export const AppCartProvider = ({ children }: CartContextProps) => {
     setCartTotal(newCartTotal);
   }, [cartItems]);
 
-  const addItemToCart = (productToAdd: Product) => {
+  const addItemToCart = (productToAdd: CategoriesMap) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
-  const removeItemFromCart = (cartItemToRemove: Product) => {
+  const removeItemFromCart = (cartItemToRemove: CategoriesMap) => {
     setCartItems(removeCartItem(cartItems, cartItemToRemove));
   };
 
-  const clearItemFromCart = (cartItemToClear: Product) => {
+  const clearItemFromCart = (cartItemToClear: CategoriesMap) => {
     setCartItems(clearCartItem(cartItems, cartItemToClear));
   };
 

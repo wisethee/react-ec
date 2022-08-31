@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import AppProduct from '../../core/components/product/product.component';
-import { AppProductsContext } from '../../core/contexts/products.context';
+import { AppCategoriesContext } from '../../core/contexts/categories.context';
 import AppContainer from '../../core/layout/container/container.component';
-import { Product } from '../../core/types/product.type';
+import { CategoriesMap } from '../../core/types/category-map.type';
 import { Theme } from '../../core/types/theme.type';
 
 const useShopStyles = createUseStyles(
@@ -12,18 +12,40 @@ const useShopStyles = createUseStyles(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      width: '100%',
       padding: [spacing[16], spacing[0]],
-      '& h2': {
-        fontSize: typography.fontSize.displaySmall,
-        lineHeight: typography.leading.displaySmall,
-        color: colors.grey[700],
-        marginBottom: spacing[2],
-        textAlign: 'center',
-      },
+    },
+    h2: {
+      fontSize: typography.fontSize.displaySmall,
+      lineHeight: typography.leading.displaySmall,
+      color: colors.grey[700],
+      marginBottom: spacing[2],
+      textAlign: 'center',
     },
     shop: {
       display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+    },
+    category: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      marginBottom: spacing[16],
+    },
+    categoryInner: {
+      display: 'flex',
+      width: '100%',
       flexWrap: 'wrap',
+    },
+    categoryTitle: {
+      fontSize: typography.fontSize.displaySmall,
+      lineHeight: typography.leading.displaySmall,
+      color: colors.grey[700],
+      marginBottom: spacing[2],
+      textTransform: 'capitalize',
+      textAlign: 'start',
+      paddingLeft: spacing[3],
     },
     span: {
       display: 'flex',
@@ -37,20 +59,30 @@ const useShopStyles = createUseStyles(
 );
 
 const AppShop = () => {
-  const { products } = useContext(AppProductsContext);
-  const { shop, inner, span } = useShopStyles();
+  const { categoriesMap } = useContext(AppCategoriesContext);
+  const { shop, inner, span, category, categoryInner, categoryTitle, h2 } =
+    useShopStyles();
+
+  console.log(categoriesMap);
 
   return (
     <AppContainer>
       <div className={inner}>
-        <h2>Shop</h2>
+        <h2 className={h2}>Shop</h2>
         <span className={span}>
           Nam liber tempor cum soluta nobis eleifend option congue nihil
           imperdiet doming id quod mazim placerat facer possim assum.
         </span>
         <div className={shop}>
-          {products.map((product: Product) => (
-            <AppProduct key={product.id} product={product}></AppProduct>
+          {Object.keys(categoriesMap).map((title) => (
+            <div key={title} className={category}>
+              <h2 className={categoryTitle}>{title}</h2>
+              <div className={categoryInner}>
+                {categoriesMap[title].map((product: CategoriesMap) => (
+                  <AppProduct key={product.id} product={product}></AppProduct>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -1,3 +1,3 @@
-import { Product } from './product.type';
+import { CategoriesMap } from './category-map.type';
 
-export type CartItem = Product & { quantity: number };
+export type CartItem = CategoriesMap & { quantity: number };
