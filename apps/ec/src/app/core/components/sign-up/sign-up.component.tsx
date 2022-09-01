@@ -1,8 +1,9 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 // JSS
 import { createUseStyles } from 'react-jss';
-import { AppUserContext } from '../../contexts/user.context';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../store/reducers/user/user.reducer';
 import { Theme } from '../../types/theme.type';
 
 // Utils
@@ -52,12 +53,12 @@ const defaultFormFields = {
 // @Component
 // TODO: Alert user when user/email exists
 const AppSignUp = () => {
+  const dispatch = useDispatch();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
   const { signUp, h2, span, marginFormInput } = useSignUpStyles();
-
-  const { setCurrentUser } = useContext(AppUserContext);
 
   const hadleChange = (event: any) => {
     const { name, value } = event.target;
@@ -82,7 +83,7 @@ const AppSignUp = () => {
         email,
         password
       );
-      setCurrentUser(response?.user);
+      dispatch(userActions.setCurrentUser(response?.user));
       await createUserDocument(response?.user, { displayName });
 
       resetFormFileds();

@@ -1,8 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-
-// User Context
-import { AppUserContext } from '../../contexts/user.context';
+import { Link } from 'react-router-dom';
 
 // Layout
 import AppContainer from '../container/container.component';
@@ -23,6 +20,9 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 // Components
 import AppCartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { AppCartContext } from '../../contexts/cart.context';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../store/reducers/user/user.reducer';
+import { userSelector } from '../../store/reducers/user/user.selector';
 
 // Component Styles
 const useNavStyles = createUseStyles(
@@ -152,12 +152,18 @@ const AppNavEnd = () => {
     label,
     labelBg,
   } = useNavStyles();
-  const { currentUser } = useContext(AppUserContext);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(userSelector);
+
   const { isCartOpen, setIsCartOpen } = useContext(AppCartContext);
   const { cartCount } = useContext(AppCartContext);
 
   const toogleIsCartOpen = () => setIsCartOpen(!isCartOpen);
-  // const countCartItems = () => {};
+
+  const signOut = () => {
+    dispatch(userActions.setCurrentUser({}));
+    signOutUser();
+  };
 
   return (
     <div className={navEnd}>
@@ -171,12 +177,13 @@ const AppNavEnd = () => {
       </div>
 
       <div className={iconMenu}>
-        {!currentUser ? (
+        {!currentUser && (
           <Link to="/auth" className={link}>
             <IconUser />
           </Link>
-        ) : (
-          <span className={link} onClick={signOutUser}>
+        )}
+        {currentUser && (
+          <span className={link} onClick={signOut}>
             <IconUser />
             <span className={badgeBg}></span>
             <span className={badge}></span>

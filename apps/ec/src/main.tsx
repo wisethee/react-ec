@@ -7,8 +7,11 @@ import { BrowserRouter } from 'react-router-dom';
 // Root Component
 import App from './app/app';
 
-// Providers
-import { AppUserProvider } from './app/core/contexts/user.context';
+// Redux Provider & store
+import { Provider } from 'react-redux';
+import store from './app/core/store/store';
+
+// Context API Providers
 import { AppCategoriesProvider } from './app/core/contexts/categories.context';
 import { AppCartProvider } from './app/core/contexts/cart.context';
 
@@ -18,14 +21,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <AppUserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <AppCategoriesProvider>
           <AppCartProvider>
             <App />
           </AppCartProvider>
         </AppCategoriesProvider>
-      </AppUserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 );
